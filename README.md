@@ -7,7 +7,7 @@ Download and sign into Github Desktop (easiest to use) - https://desktop.github.
 
 ##Steps to install:
 
-1. Pull the repository into a local folder using the Clone Repository option [photo1](githubTutorial/cloneRepoOption.png)
+1. Pull the repository into a local folder using the Clone Repository option ![photo1](githubTutorial/cloneRepoOption.png)
 2. Open a terminal and change your working directory to the git repository folder [photo]
 3. Check the branch you are in... if it says main, use this command --> "git checkout development" if you are in git bash or switch the branch to development if you are using a Git GUI [photo]
 4. In your terminal, make sure your working directory is the AIOPlanner repository (previous step). Type this command: source env/Scripts/activate         (you can exit the virtual environment by pressing CTRL+D) 
