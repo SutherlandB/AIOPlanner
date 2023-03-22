@@ -30,7 +30,7 @@ def index():
             return "There was an issue adding your task"
     else:
         tasks = Todo.query.order_by(Todo.date_created).all()
-        return render_template("index.html", tasks=tasks)
+        return render_template("dashboard.html", tasks=tasks)
         
 @app.route('/delete/<int:id>' )
 def delete(id):
@@ -56,6 +56,22 @@ def update(id):
             return "there was a problem updating that task"
     else:
         return render_template('update.html', task_to_update=task_to_update)
+
+@app.route('/checkbox/<int:id>', methods = ['POST', 'GET'])
+def checkbox(id):
+    task = Todo.query.get_or_404(id)
+    if request.method == "POST":
+        if request.form.get("Check") == "on":
+            task.completed = 1
+        else:
+
+            task.completed = 0
+        try:
+            db.session.commit()
+            return redirect('/')
+        except:
+            return "there was a problem updating that task"
+    
 
 if __name__ ==  "__main__":
     app.run(debug = True) 
