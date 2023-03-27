@@ -7,4 +7,30 @@
 
 {% block body %}
 
+<div class = edit_content>
+    <h1>Edit the Event</h1>
+    <form action = "/editEvent/{{task_to_update.id}}" method =  "POST">
+        {%if task_to_update.title %}
+        <input type="text"  name="eventTitle" id = "eventTitle" value = "{{task_to_update.title}}">
+        {%endif%}
+        {%if task_to_update.dateTime_of_event.date() %}
+        <input type="date"  name="eventDate" id = "eventDate" value = "{{task_to_update.dateTime_of_event.date()}}">
+        {%endif%}
+        {%if task_to_update.dateTime_of_event.time()%}
+        <input type="time"  name="eventTime" id = "eventTime" value = "{{task_to_update.dateTime_of_event.time()}}">
+        {%endif%}
+        {%if task_to_update.location_of_event%}
+        <input type="text"  name="eventLocation" id = "eventLocation" value = "{{task_to_update.location_of_event }}">
+        {%endif%}
+        <input type = "submit" value = "OK">
+
+    </form>
+    <form action = "/deleteEvent/{{task_to_update.id}}" method = "POST">
+        <input type = "submit" name = "delete" value = "Delete">
+    </form>
+
+</div>
+
+    
+
 {% endblock %}

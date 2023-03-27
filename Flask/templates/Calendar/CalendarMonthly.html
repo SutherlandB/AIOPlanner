@@ -6,27 +6,17 @@
 {% endblock %}
 
 {% block body %}
-<div class = "content">
-    <title>Calendar</title>
-    <div class = "eventOptions">
-     <table>
-         <tr>
-             <a href = "/createEvent">Create Event </a>
-             
-         </tr>
-     </table>
-    </div>
- </div>
+
 <div id = "calendar">
     <script>
         let calendarEL = document.getElementById('calendar')
         let calendar = new FullCalendar.Calendar(calendarEL,{
+            selectable: true,
+            selectHelper: true,
             eventClick: function(info) {
                 //edit or delete the event 
-                var id = $(this).data('id');        
-                if (name != undefined && name != null) {
-                    window.location = '' + name;
-    }
+                window.location.href = "/editEvent/" + info.event.id
+    
             
         },
 
@@ -41,6 +31,7 @@
                     id : '{{event.id}}',
                     title : '{{event.title}}',
                     start : '{{event.dateTime_of_event.date()}}',
+
                 },
                 {% endfor %}
             ]
@@ -48,6 +39,20 @@
         )
         calendar.render()
     </script>
+</div>
+<div class = "content">
+    <title>Calendar</title>
+    <div class = "eventOptions">
+     <table>
+         <tr>
+            <a href="/createEvent">
+                <input type = "button" name = "createEvent" value = "Create Event">
+            </a>
+             
+            
+         </tr>
+     </table>
+    </div>
 </div>
 
 

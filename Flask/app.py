@@ -18,7 +18,6 @@ def index():
     if request.method == "POST":
         task_content = request.form['content']
         new_Task = Todo(content=task_content)
-
         try:
             db.session.add(new_Task)
             db.session.commit()
@@ -28,7 +27,7 @@ def index():
     else:
         tasks = Todo.query.order_by(desc(Todo.date_created)).all()
         return render_template("dashboard.html", tasks=tasks)
-
+        
 if __name__ ==  "__main__":
     
     app.run(debug = True) 
