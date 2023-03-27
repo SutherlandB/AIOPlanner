@@ -42,3 +42,8 @@ def checkbox(id):
             return redirect('/')
         except:
             return "there was a problem updating that task"
+
+@todo_page.route('/calendar', methods = ["GET"])
+def Calendar():
+    Events = Event.query.order_by(Event.dateTime_of_event).all()
+    return render_template("Calendar/CalendarMonthly.html", Events = Events)

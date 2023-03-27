@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js">  </script>
+{% endblock %}
+
+{% block body %}
+<div class = "content">
+    <title>Calendar</title>
+    <div class = "eventOptions">
+     <table>
+         <tr>
+             <a href = "/createEvent">Create Event </a>
+             
+         </tr>
+     </table>
+    </div>
+ </div>
+<div id = "calendar">
+    <script>
+        let calendarEL = document.getElementById('calendar')
+        let calendar = new FullCalendar.Calendar(calendarEL,{
+            eventClick: function(info) {
+                //edit or delete the event 
+                var id = $(this).data('id');        
+                if (name != undefined && name != null) {
+                    window.location = '' + name;
+    }
+            
+        },
+
+        mouseEnterInfo: function(info){
+            // change the border color just for fun
+            info.el.style.borderColor = 'red';
+            
+        },
+            events : [
+                {% for event in Events %}
+                { 
+                    id : '{{event.id}}',
+                    title : '{{event.title}}',
+                    start : '{{event.dateTime_of_event.date()}}',
+                },
+                {% endfor %}
+            ]
+        }
+        )
+        calendar.render()
+    </script>
+</div>
+
+
+{% endblock %}
