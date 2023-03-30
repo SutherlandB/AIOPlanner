@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<link href="../static/css/main.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../static/css-table-18/fonts/icomoon/style.css">
+<link rel="stylesheet" href="../static/css-table-18/css/owl.carousel.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../static/css-table-18/css/bootstrap.min.css">
+<!--style-->
+<link rel="stylesheet" href="../static/css-table-18/css/style.css">
+
+{% endblock %}
+{% block body %}
+<div class = "content">
+   <body>
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}
+      <h1 style="color:white">Assignments</h1>
+      <a href='/'>Dashboard</a>
+      <form method="GET" action="/assignments">
+        <label style="color:white" for="completed-filter">Filter by Completed Status:</label>
+        <select name="completed" id="completed-filter">
+            <option value="all" {% if completed == 'all' %}selected{% endif %}>All Assignments</option>
+            <option value="not_completed" {% if completed == 'not_completed' %}selected{% endif %}>Not Completed</option>
+            <option value="completed" {% if completed == 'completed' %}selected{% endif %}>Completed</option>
+        </select>
+        <button type="submit">Filter</button>
+      </form>
+      <table class="custom-table">
+         <tr scope="row">
+               <th scope="col"><b>Title</b></th>
+               <th scope="col"><b>Course</b></th>
+               <th scope="col"><b>DueDate</b></th>
+               <th scope="col"><b>Completed</b></th>
+               <th scope="col"><b>Actions</b></th>
+            </tr>
+         </tr>
+
+            {% for assignment in AssignmentTracker %}
+               <tr scope="row">
+                  <td>{{ assignment.title }}</td>
+                  <td>{{ assignment.course }}</td>
+                  <td>{{ assignment.due_date }}</td>
+                  <td>
+                    <form action = "{{ url_for('assignments.checkbox_assingment', id=assignment.id) }}", method = "POST" >
+                        {% if assignment.completed == true%}
+                        <input type = "checkbox" name = "Check" onChange="this.form.submit()" checked> 
+                        {%- elif assignment.completed == false -%}
+                        <input type = "checkbox" name = "Check" onChange="this.form.submit()">
+                        {%- endif %}
+                    </form>
+                  </td>
+                  <td>    
+                    <a href="{{ url_for('assignments.delete_assignment', id=assignment.id) }}">Delete</a>
+                    <br>
+                    <a href="{{ url_for('assignments.update_form', id=assignment.id) }}">Update</a>
+                  </td>
+
+               </tr>
+            {% endfor %}
+      </table>
+      {% if update_assignment_id %}
+      <h2>Update assignment</h2>
+      <form method="POST" action="{{ url_for('assignments.update_assignment', id=update_assignment_id) }}">
+          <label style="color:white">Title:</label>
+          <input type="text" name="title" value="{{ update_assignment_title }}" required><br><br>
+          <label style="color:white">Due date:</label>
+          <input type="date" name="due_date" value="{{ update_assignment_due_date }}" required><br><br>
+          <input type="submit" value="Update">
+      </form>
+    {% else %}
+    <h2>Add a new assignment</h2>
+    <form method="post" action="/add_item">
+        <label style="color:white" for = "title">Ttile</label><br>
+        <input type = "text" name = "title" placeholder = "title" /><br>
+
+        <label style="color:white" for = "course">Course</label><br>
+        <input type = "text" name = "course" placeholder = "course" /><br>
+
+        <label style="color:white" for = "due_date">Due Date</label><br>
+        <input type="date" name = "due_date" placeholder = "due date"><br>
+
+        <input type = "submit" value = "Submit" />
+    </form>
+    {% endif %}
+   </body>
+</div>
+{% endblock %}

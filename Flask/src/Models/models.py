@@ -23,3 +23,12 @@ class Event(db.Model):
     def __repr__(self):
         return '<Event %r>' % self.id
 
+class AssignmentTracker(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    course = db.Column(db.Text)
+    due_date = db.Column(db.Date, nullable=False)
+    completed = db.Column(db.Integer, default=0)
+
+    def __repr__(self):
+        return '<Assignment %r>' % self.id
