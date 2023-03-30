@@ -5,7 +5,7 @@
 Download Python3 - https://python.org
 Download and sign into Github Desktop (easiest to use) - https://desktop.github.com/
 
-## Steps to install:
+##Steps to install:
 
 1. Pull the repository into a local folder using the Clone Repository option ![photo1](githubTutorial/cloneRepoOption.png) ![photo4](githubTutorial/localPath.png)
 2. Open a terminal and change your working directory to the git repository folder ![photo2](githubTutorial/workingDirectory.png)
