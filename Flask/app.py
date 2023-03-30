@@ -4,7 +4,7 @@ from sqlalchemy import asc, desc
 from datetime import datetime
 from src.Models.models import *
 from src.Services.todo.todo import todo_page
-from src.Services.calendar import CalendarMonthly_page 
+from src.Services.calendar import calendar_monthly_page 
 from src.Services.assigments import assignment_page 
 
 class App():
@@ -24,7 +24,7 @@ class App():
         #initialize SQLALCHEMY_DATABASE_URI
         db.init_app(self.app)
         self.app.register_blueprint(todo_page)
-        self.app.register_blueprint(CalendarMonthly_page)
+        self.app.register_blueprint(calendar_monthly_page)
         self.app.register_blueprint(assignment_page)
 
     @app.route('/', methods = ['POST', 'GET'])
