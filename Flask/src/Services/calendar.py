@@ -58,6 +58,7 @@ def deleteEvent(id):
     except:
         return "there was a problem deleting that task"
         
-   
-   
-
+@CalendarMonthly_page.route('/calendar', methods = ["GET"])
+def index():
+    Events = Event.query.order_by(Event.dateTime_of_event).all()
+    return render_template("Calendar/CalendarMonthly.html", Events = Events)
