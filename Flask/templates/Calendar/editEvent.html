@@ -1,26 +1,39 @@
 {% extends "base.html" %}
 
 {% block head %}
-
+<link rel = "stylesheet" href = "../../static/css/main.css">
 
 {% endblock %}
 
 {% block body %}
 
 <div class = edit_content>
-    <h1>Edit the Event</h1>
+    <h1 class = "createButtons">Edit the Event</h1>
     <form action = "/editEvent/{{task_to_update.id}}" method =  "POST">
         {%if task_to_update.title %}
+        <label class = "createButtons" for="eventTitle"> Title: </label>
         <input type="text"  name="eventTitle" id = "eventTitle" value = "{{task_to_update.title}}">
+        <br>
         {%endif%}
         {%if task_to_update.dateTime_of_event.date() %}
+        <label class = "createButtons" for="eventDate"> Date: </label>
         <input type="date"  name="eventDate" id = "eventDate" value = "{{task_to_update.dateTime_of_event.date()}}">
+        <br>
         {%endif%}
         {%if task_to_update.dateTime_of_event.time()%}
+        <label class = "createButtons" for="eventTime"> Start Time: </label>
         <input type="time"  name="eventTime" id = "eventTime" value = "{{task_to_update.dateTime_of_event.time()}}">
+        <br>
+        {%endif%}
+        {%if task_to_update.endTime_of_event%}
+        <label class = "createButtons" for="eventTime"> End Time: </label>
+        <input type="time"  name="eventTime" id = "eventTime" value = "{{task_to_update.endTime_of_event}}">
+        <br>
         {%endif%}
         {%if task_to_update.location_of_event%}
+        <label class = "createButtons" for="eventLocation"> Location: </label>
         <input type="text"  name="eventLocation" id = "eventLocation" value = "{{task_to_update.location_of_event }}">
+        <br>
         {%endif%}
         <input type = "submit" value = "OK">
 

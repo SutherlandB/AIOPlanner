@@ -3,16 +3,39 @@
 {% block head %}
     <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.css">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js">  </script>
+    <link rel = "stylesheet" href = "../../static/css/main.css">
 {% endblock %}
 
 {% block body %}
-
-<div id = "calendar">
+<div class = "content" >
+    <title>Calendar</title>
+    <div class = "eventOptions">
+     <table>
+         <tr>
+            <a href="/createEvent">
+                <input class = "createEvent" type = "button" name = "createEvent" value = "Create Event">
+            </a> 
+            
+         </tr>
+     </table>
+    </div>
+</div>
+<div id = "calendar" style="background-color:#ffff">
     <script>
+        
         let calendarEL = document.getElementById('calendar')
         let calendar = new FullCalendar.Calendar(calendarEL,{
+            timeZone: 'UTC',
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next',
+                center: 'title',
+                right: 'dayGridMonth,dayGridWeek,dayGridDay'
+            },
+            
             selectable: true,
             selectHelper: true,
+            
             eventClick: function(info) {
                 //edit or delete the event 
                 window.location.href = "/editEvent/" + info.event.id
@@ -25,35 +48,23 @@
             info.el.style.borderColor = 'red';
             
         },
-            events : [
-                {% for event in Events %}
-                { 
-                    id : '{{event.id}}',
-                    title : '{{event.title}}',
-                    start : '{{event.dateTime_of_event.date()}}',
+        events : [
+            {% for event in Events %}
+            { 
+                id : '{{event.id}}',
+                title : '{{event.title}}',
+                start : '{{event.dateTime_of_event.date()}}',
+                end: '{{event.endTime_of_event}}',
 
-                },
-                {% endfor %}
-            ]
+            },
+            {% endfor %}
+        ]
         }
         )
         calendar.render()
     </script>
 </div>
-<div class = "content">
-    <title>Calendar</title>
-    <div class = "eventOptions">
-     <table>
-         <tr>
-            <a href="/createEvent">
-                <input type = "button" name = "createEvent" value = "Create Event">
-            </a>
-             
-            
-         </tr>
-     </table>
-    </div>
-</div>
+
 
 
 {% endblock %}

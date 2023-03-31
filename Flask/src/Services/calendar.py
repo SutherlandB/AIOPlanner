@@ -13,7 +13,8 @@ def createEvent():
         time = request.form.get("eventTime")
         dt = datetime.strptime(date + " " + time,"%Y-%m-%d %H:%M")
         location_of_event = request.form['eventLocation']
-        newEvent = Event(title = title, dateTime_of_event = dt, location_of_event = location_of_event)
+        endTime_of_event = request.form['eventEndTime']
+        newEvent = Event(title = title, dateTime_of_event = dt, location_of_event = location_of_event, endTime_of_event = endTime_of_event)
         
 
         try:

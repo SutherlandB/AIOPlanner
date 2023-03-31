@@ -15,6 +15,9 @@ db.init_app(app)
 app.register_blueprint(todo_page)
 app.register_blueprint(CalendarMonthly_page)
 app.register_blueprint(assignment_page)
+with app.app_context():
+    
+    db.create_all()
 @app.route('/', methods = ['POST', 'GET'])
 def index():
     if request.method == "POST":

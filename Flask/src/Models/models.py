@@ -20,6 +20,7 @@ class Event(db.Model):
     date_created = db.Column(db.DateTime, default = datetime.utcnow)
     dateTime_of_event = db.Column(db.DateTime, default = datetime.utcnow)
     location_of_event = db.Column(db.String(200), nullable = False)
+    endTime_of_event = db.Column(db.String(200), nullable = False)
     def __repr__(self):
         return '<Event %r>' % self.id
 
@@ -32,3 +33,4 @@ class AssignmentTracker(db.Model):
 
     def __repr__(self):
         return '<Assignment %r>' % self.id
+

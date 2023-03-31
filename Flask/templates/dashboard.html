@@ -2,20 +2,12 @@
 
 {% block head %}
 
-<link href="../static/css/main.css" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../static/css-table-18/fonts/icomoon/style.css">
-<link rel="stylesheet" href="../static/css-table-18/css/owl.carousel.min.css">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="../static/css-table-18/css/bootstrap.min.css">
-<!--style-->
-<link rel="stylesheet" href="../static/css-table-18/css/style.css">
-
 {% endblock %}
 
 {% block body %}
-<div class = "content">
-    <h1 style="color:white">AIO Dashboard</h1>
+
+<div class="page-content">
+    <h1 class = "To-do_title" style="color:white">To-do</h1>
     <table class="custom-table">
         <tr scope="row">
             <th scope="col">Task</th>
@@ -44,7 +36,7 @@
                         {%- endif %}
 
                     </form>
-                     
+                        
                 </td>
             </tr>
         {% endfor %}
@@ -54,7 +46,7 @@
         <input type="submit" value="Add Task">
 
     </form>
-    <a href="/assignments">Assignment Tracker...</a>
-    <a href="/calendar">Calendar Link...</a>
-</div>  
+</div>
+      
+
 {% endblock %}

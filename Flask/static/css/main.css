@@ -2,3 +2,14 @@ body{
     margin: 0;
     font-family: sans-serif;
 }
+.createEvent{
+    position: fixed;
+    bottom: -4px;
+    z-index: 1001;
+    right: 10px;
+}
+.fc-toolbar-title{ color: #000; } 
+
+.createButtons{
+    color: #fff;
+}

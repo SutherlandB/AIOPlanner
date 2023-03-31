@@ -5,7 +5,7 @@ from src.Models.models import *
 
 assignment_page = Blueprint('assignments', __name__, template_folder="templates")
 
-@assignment_page.route('/delete_assignment/<int:id>', methods =['POST'] )
+@assignment_page.route('/delete_assignment/<int:id>' )
 def delete_assignment(id):
     to_delete = AssignmentTracker.query.get_or_404(id)
     try:
