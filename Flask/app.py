@@ -26,11 +26,11 @@ class App():
         self.app.register_blueprint(todo_page)
         self.app.register_blueprint(calendar_monthly_page)
         self.app.register_blueprint(assignment_page)
-
-    with app.app_context():
+        
     
-    db.create_all()
-@app.route('/', methods = ['POST', 'GET'])
+
+    
+    @app.route('/', methods = ['POST', 'GET'])
     def index():
         if request.method == "POST":
             task_content = request.form['content']
