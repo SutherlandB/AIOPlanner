@@ -9,6 +9,7 @@ class Todo(db.Model):
     content = db.Column(db.String(200), nullable = False)
     completed = db.Column(db.Integer, default = 0)
     date_created = db.Column(db.DateTime, default = datetime.utcnow)
+    list_id = db.Column(db.Integer, db.ForeignKey('list.id'))
 
     def __repr__(self):
         return '<Task %r>' % self.id
@@ -34,3 +35,11 @@ class AssignmentTracker(db.Model):
     def __repr__(self):
         return '<Assignment %r>' % self.id
 
+class List(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable = False)
+    date_created = db.Column(db.DateTime, default = datetime.utcnow)
+    To_do_Entry = db.Relationship('Todo', backref='List')
+    
+    def __repr__(self):
+        return f'<List "{self.content[:20]}...">'

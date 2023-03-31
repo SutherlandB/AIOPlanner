@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel = "stylesheet" href = "../../static/css/main.css">
+
+{% endblock %}
+
+{% block body %}
+
+<div class = edit_content>
+    <h1 class = "createButtons">Edit the Event</h1>
+    <form action = "/editListEvent/{{task_to_update.id}}" method =  "POST">
+        {%if task_to_update.content %}
+        <label class = "edit_content" for="eventTitle"> Content: </label>
+        <input type="text"  name="edit_content" id = "edit_content" value = "{{task_to_update.content}}">
+        <br>
+        {%endif%}
+        
+        <input type = "submit" value = "OK">
+    </form>
+
+</div>
+
+    
+
+{% endblock %}

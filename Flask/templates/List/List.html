@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{%block head %}
+
+{% endblock %}
+
+  
+
+
+{% block body %}
+<div class="tabs">
+  {% for list in Lists%}
+      <input type="radio" class="tabs__radio" name="tabs-example" id="{{ list.id }}" >
+      <label for="{{ list.id }}" class="tabs__label">{{ list.title }}</label>
+      
+      <div class="tabs__content">
+        <table class="custom-table">
+          <tr scope="row">
+              
+              <th scope="col">Task</th>
+              <th scope="col">Added</th>
+              <th scope="col">Actions</th>
+              <th scope="col">Completed</th>
+          </tr>
+          {% for task in list.To_do_Entry%}
+          
+          <tr scope="row">
+            <td>{{ task.content }}</td>
+            <td>{{ task.date_created.date() }}</td>
+            <td>    
+                <a href="/delete_task/{{task.id}}">Delete</a>
+                <br>
+                <a href="/editListEvent/{{task.id}}">Update</a>
+            </td>
+            <td>
+                <form action = "/checkboxList/{{task.id}}", method = "POST" >
+                    {% if task.completed == true%}
+                    <tab></tab>
+                    <input type = "checkbox" name = "Check" class = "Check" onChange="this.form.submit()" checked> 
+                    {%- elif task.completed == false -%}
+                    <tab></tab>
+                    <input type = "checkbox" name = "Check" class = "Check" onChange="this.form.submit()">
+                    {%- endif %}
+
+                </form>
+                    
+            </td>
+        </tr>
+        {%endfor%}
+        
+        </table>
+        <form action = "/createNewTask/{{list.id}}", method = "POST">
+          <input type = "text" name = "textBox" placeholder = "New task...">
+          <input type = "submit" name = "createTask" value = "Create a task">
+        </form>
+      </div>
+      
+      
+
+  {% endfor %}
+    
+</div>
+<table>
+  <tr>
+     <a href="/createList">
+         <input class = "createEvent" type = "button" name = "createList" value = "Create List">
+     </a> 
+     
+  </tr>
+</table>
+
+{%endblock%}

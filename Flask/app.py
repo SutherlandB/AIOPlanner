@@ -6,6 +6,7 @@ from src.Models.models import *
 from src.Services.todo.todo import todo_page
 from src.Services.calendar import calendar_monthly_page 
 from src.Services.assigments import assignment_page 
+from src.Services.list import list_page
 
 class App():
     app = Flask(__name__)
@@ -26,6 +27,9 @@ class App():
         self.app.register_blueprint(todo_page)
         self.app.register_blueprint(calendar_monthly_page)
         self.app.register_blueprint(assignment_page)
+        self.app.register_blueprint(list_page)
+        with self.app.app_context():
+            db.create_all()
         
     
 

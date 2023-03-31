@@ -10,12 +10,14 @@
     <h1 class = "To-do_title" style="color:white">To-do</h1>
     <table class="custom-table">
         <tr scope="row">
+            
             <th scope="col">Task</th>
             <th scope="col">Added</th>
             <th scope="col">Actions</th>
             <th scope="col">Completed</th>
         </tr>
         {% for task in tasks %}
+        {% if not task.list_id %}
             <tr scope="row">
                 <td>{{ task.content }}</td>
                 <td>{{ task.date_created.date() }}</td>
@@ -39,6 +41,7 @@
                         
                 </td>
             </tr>
+            {%endif%}
         {% endfor %}
     </table>
     <form action = "/" method = "POST">

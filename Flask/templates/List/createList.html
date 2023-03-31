@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block head %}
+{%endblock%}
+
+{%block body %}
+<form action = "/createList", method = "POST">
+    <label for="textList" class = "createButton">List title: </label>
+    <input name = "textList" type = "text" placeholder = "New List Name">
+    <input type = "submit" name = "confirm" value = "OK">
+</form>
+{%endblock%}
