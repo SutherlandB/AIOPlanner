@@ -62,3 +62,15 @@ def checkbox_assingment(id):
             return redirect('/assignments')
         except:
             return "there was a problem updating that task"
+
+@assignment_page.route('/assignments', methods = ["GET"])
+def index():
+    completed = request.args.get('completed', 'all')
+    if completed == 'not_completed':
+        assignments = AssignmentTracker.query.filter_by(completed=False).all()
+    elif completed == 'completed':
+        assignments = AssignmentTracker.query.filter_by(completed=True).all()
+    else:
+        assignments = AssignmentTracker.query.order_by(AssignmentTracker.due_date).all()
+
+    return render_template('Assignments/home.html', AssignmentTracker=assignments, completed=completed)

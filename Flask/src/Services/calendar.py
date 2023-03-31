@@ -3,9 +3,9 @@ from flask import Blueprint
 from src.Models.models import *
 from datetime import datetime
 
-CalendarMonthly_page = Blueprint('Calendar', __name__, template_folder="templates")
+calendar_monthly_page = Blueprint('Calendar', __name__, template_folder="templates")
 
-@CalendarMonthly_page.route("/createEvent", methods = ["GET","POST"])
+@calendar_monthly_page.route("/createEvent", methods = ["GET","POST"])
 def createEvent():
     if request.method == "POST":
         title = request.form['eventTitle']
@@ -28,7 +28,7 @@ def createEvent():
         Events = Event.query.order_by(Event.dateTime_of_event).all()
         return render_template("Calendar/createEvent.html", Events=Events)
 
-@CalendarMonthly_page.route("/editEvent/<int:id>", methods = ["GET","POST"])
+@calendar_monthly_page.route("/editEvent/<int:id>", methods = ["GET","POST"])
 def editEvent(id):
     task_to_update = Event.query.get_or_404(id)
     if request.method == "POST":
@@ -49,7 +49,7 @@ def editEvent(id):
         task_to_update = Event.query.get_or_404(id)
         return render_template("Calendar/editEvent.html",task_to_update = task_to_update)
         
-@CalendarMonthly_page.route("/deleteEvent/<int:id>", methods = ["POST"])
+@calendar_monthly_page.route("/deleteEvent/<int:id>", methods = ["POST"])
 def deleteEvent(id):
     task_to_delete = Event.query.get_or_404(id)
     try:
@@ -59,6 +59,7 @@ def deleteEvent(id):
     except:
         return "there was a problem deleting that task"
         
-   
-   
-
+@calendar_monthly_page.route('/calendar', methods = ["GET"])
+def index():
+    Events = Event.query.order_by(Event.dateTime_of_event).all()
+    return render_template("Calendar/CalendarMonthly.html", Events = Events)
