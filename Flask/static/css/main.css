@@ -23,6 +23,12 @@ body {
 .createButtons{
     color: #fff;
 }
+
+.page-content{
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+}
 .tabs__label{
     color:#fff;
 }
