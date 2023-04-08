@@ -2,6 +2,7 @@ from flask import Blueprint
 
 from src.Models.models import *
 from datetime import datetime
+from sqlalchemy import asc, desc
 
 calendar_monthly_page = Blueprint('Calendar', __name__, template_folder="templates")
 
@@ -61,5 +62,5 @@ def deleteEvent(id):
         
 @calendar_monthly_page.route('/calendar', methods = ["GET"])
 def index():
-    Events = Event.query.order_by(Event.dateTime_of_event).all()
+    Events = Event.query.order_by(asc(Event.dateTime_of_event)).all()
     return render_template("Calendar/CalendarMonthly.html", Events = Events)

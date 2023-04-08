@@ -48,8 +48,8 @@ class App():
             
         else:
             tasks = Todo.query.order_by(desc(Todo.date_created)).all()
-            
-            return render_template("dashboard.html", tasks=tasks)
+            events = Event.query.order_by(Event.dateTime_of_event).all()
+            return render_template("dashboard.html", tasks=tasks, Events = events)
 
 if __name__ == '__main__':
     app = App()

@@ -1,55 +1,134 @@
 {% extends "base.html" %}
 
 {% block head %}
-
 {% endblock %}
 
 {% block body %}
-
 <div class="page-content">
-    <h1 class = "To-do_title" style="color:white">To-do</h1>
-    <table class="custom-table">
-        <tr scope="row">
-            
-            <th scope="col">Task</th>
-            <th scope="col">Added</th>
-            <th scope="col">Actions</th>
-            <th scope="col">Completed</th>
-        </tr>
-        {% for task in tasks %}
-        {% if not task.list_id %}
-            <tr scope="row">
-                <td>{{ task.content }}</td>
-                <td>{{ task.date_created.date() }}</td>
-                <td>    
-                    <a href="/delete/{{task.id}}">Delete</a>
-                    <br>
-                    <a href="/update/{{task.id}}">Update</a>
-                </td>
-                <td>
+    
+    <div class = "containerCali" id = "child">
+        <div class="calendar">
+            <div class = "calendar-header">
+                <span class = "month-picker" id = "month-picker"> April </span>
+                <div class = "year-picker" id = "year-picker">  </div>
+                    <span class = "year-change" id = "pre-year"> 
+                        <pre><</pre>
+                    </span>
+                    <span id = "year"> 2023 </span>
+                    <span class = "year-change" id = "next-year">
+                        <pre>></pre>
+                    </span>
+            </div>
+            <div class = "calendar-body">
+                <div class = "calendar-week-days">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tues</div>
+                    <div>Wed</div>
+                    <div>Thurs</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+
+                </div>
+                <div class = "calendar-days">
+                </div>
+            </div>
+            <div class = "calendar-footer">
+            </div>
+            <div class = "date-time-formate">
+                <div class = "day-text-formate">Today</div>
+                <div class = "date-time-value">
+                    <div class = "time-formate">02:51:20</div>
+                    <div class = "date-formate">23 - july - 2022</div>
+                </div>
+            </div>
+            <div class = "month-list"></div>
+        </div>
+        <script src="../static/js/app.js"></script>
+    </div>
+    <div class = "eventsAndTasks" id = "child">
+        <div class = "upcomingEvents" id = "childElement">
+            <h1 style = "color:white; font-size: 20px;">Upcoming Events</h1>
+            {% if Events%}
+            <table class = "custom-table">
+                <thead>
                     
-                    <form action = "/checkbox/{{task.id}}", method = "POST" >
-                        {% if task.completed == true%}
-                        <tab></tab>
-                        <input type = "checkbox" name = "Check" class = "Check" onChange="this.form.submit()" checked> 
-                        {%- elif task.completed == false -%}
-                        <tab></tab>
-                        <input type = "checkbox" name = "Check" class = "Check" onChange="this.form.submit()">
-                        {%- endif %}
-
-                    </form>
+                    <tr scope = "row" >
+                        <th scope = "col">Event</th>
+                        <th scope = "col">Date</th>
+                        <th scope = "col">Time</th>
+                        <th scope = "col">Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in Events%}
+                    <tr scope = "row">
+                        <td>{{event.title}}</td>
+                        <td>{{event.dateTime_of_event.date()}}</td>
+                        <td>{{event.dateTime_of_event.time()}}</td>
+                        <td>{{event.location_of_event}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table> 
+            {% endif %}
+        </div>
+        <div class = "to-do_tile" id = "childElement">
+                <h1 class = "To-do_title" style="color:white; font-size: 20px;">To-Do List</h1>
+                {% if tasks%}
+                <table class="custom-table">
+                    <thead>
                         
-                </td>
-            </tr>
-            {%endif%}
-        {% endfor %}
-    </table>
-    <form action = "/" method = "POST">
-        <input type="text"  name="content" id = "content">
-        <input type="submit" value="Add Task">
+                        <tr scope="row">
+                            
+                            <th scope="col">Task</th>
+                            <th scope="col">Added</th>
+                            <th scope="col">Actions</th>
+                            <th scope="col">Completed</th>
+                        </tr>
+                        
+                    </thead>
+                    
+                    {% for task in tasks %}
+                    {% if not task.list_id %}
+                    <tbody>
+                        <tr scope="row">
+                            <td>{{ task.content }}</td>
+                            <td>{{ task.date_created.date() }}</td>
+                            <td>    
+                                <a href="/delete/{{task.id}}">Delete</a>
+                                <br>
+                                <a href="/update/{{task.id}}">Update</a>
+                            </td>
+                            <td>
+                                
+                                <form action = "/checkbox/{{task.id}}", method = "POST" >
+                                    {% if task.completed == true%}
+                                    <tab></tab>
+                                    <input type = "checkbox" name = "Check" class = "Check" onChange="this.form.submit()" checked> 
+                                    {%- elif task.completed == false -%}
+                                    <tab></tab>
+                                    <input type = "checkbox" name = "Check" class = "Check" onChange="this.form.submit()">
+                                    {%- endif %}
 
-    </form>
+                                </form>
+                                    
+                            </td>
+                        </tr>
+                    </tbody>
+                    {%endif%}
+                    {% endfor %}
+                    
+                </table>
+                {% endif %}
+                <form action = "/" method = "POST">
+                    <input type="text"  name="content" id = "content" class = "to-do_content">
+                    <button class = "button1">Add</button>
+
+                </form>
+            </div>
+        
+    </div>
 </div>
-      
 
 {% endblock %}

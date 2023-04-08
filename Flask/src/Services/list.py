@@ -75,14 +75,15 @@ def checkbox(id):
         except:
             return "there was a problem"
         
-@list_page.route("/deleteList/<int:id>")
+@list_page.route("/deleteList/<int:id>/")
 def deleteList(id):
     task_to_delete = List.query.get_or_404(id)
     try:
+        
         db.session.delete(task_to_delete)
         db.session.commit()
         return redirect('/Lists')
     except:
-        return "there was a problem deleting that task"
+        return "there was a problem deleting that list"
 
     

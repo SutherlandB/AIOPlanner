@@ -57,7 +57,8 @@
 
             },
             {% endfor %}
-        ]
+        ],
+        eventOrder: "dateTime_of_event.date(), start"
         }
         )
         calendar.render()
