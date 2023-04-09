@@ -46,7 +46,7 @@ class App():
             try:
                 db.session.add(new_Task)
                 db.session.commit()
-                return redirect('/')
+                return redirect('/dashboard')
             except:
                 return "There was an issue adding your task"
             

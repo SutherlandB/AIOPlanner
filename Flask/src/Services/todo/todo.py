@@ -10,7 +10,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/')
+        return redirect('/dashboard')
     except:
         return "there was a problem deleting that task"
 
@@ -22,7 +22,7 @@ def update(id):
         task_to_update.content = task_content
         try:
             db.session.commit()
-            return redirect('/')
+            return redirect('/dashboard')
         except:
             return "there was a problem updating that task"
     else:
@@ -39,6 +39,6 @@ def checkbox(id):
             task.completed = 0
         try:
             db.session.commit()
-            return redirect('/')
+            return redirect('/dashboard')
         except:
             return "there was a problem updating that task"
