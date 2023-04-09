@@ -331,4 +331,60 @@ body {
     width: 400px;
     border-radius: 25px;
   }
+  @font-face {
+    font-family: myFirstFont;
+    src: url(../css-table-18/css/EarthOrbiter-YZ12.otf);
+  }
   
+  .mdl-layout-title2 {
+    font-size: 75px;
+    font-family: 'myFirstFont';
+    color: white; 
+    text-decoration: none; 
+} 
+
+.landing{
+    display: flex;
+    height:100vh;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    align-items: center;
+   /* margin-top: 50%; */
+   animation-delay: 20s;
+   -webkit-animation: fadein 10s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 10s; /* Firefox < 16 */
+    -ms-animation: fadein 10s; /* Internet Explorer */
+     -o-animation: fadein 10s; /* Opera < 12.1 */
+        animation: fadein 10s;
+  -webkit-box-reflect:below 1px linear-gradient(transparent, rgba(0, 0, 0, 0.16));
+}
+
+@keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+from { opacity: 0; }
+to   { opacity: 1; }
+}

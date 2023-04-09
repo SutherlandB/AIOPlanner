@@ -34,8 +34,12 @@ class App():
     
 
     
-    @app.route('/', methods = ['POST', 'GET'])
+    @app.route('/')
     def index():
+        return render_template("Landing/landing.html")
+
+    @app.route('/dashboard', methods = ['POST', 'GET'])
+    def dashboard():
         if request.method == "POST":
             task_content = request.form['content']
             new_Task = Todo(content=task_content)
@@ -50,6 +54,7 @@ class App():
             tasks = Todo.query.order_by(desc(Todo.date_created)).all()
             events = Event.query.order_by(Event.dateTime_of_event).all()
             return render_template("dashboard.html", tasks=tasks, Events = events)
+
 
 if __name__ == '__main__':
     app = App()
