@@ -1,5 +1,4 @@
 from flask import Blueprint
-from ..mod import *
 
 todo_page = Blueprint('dashboard', __name__, template_folder="templates")
 

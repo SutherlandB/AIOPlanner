@@ -1,9 +1,7 @@
-from flask import Flask, render_template, url_for, request, redirect
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import asc, desc
 from datetime import datetime
 from src.Models.models import *
-from src.Services.todo.todo import todo_page
+from src.Services.todo import todo_page
 from src.Services.calendar import calendar_monthly_page 
 from src.Services.assigments import assignment_page 
 from src.Services.list import list_page
