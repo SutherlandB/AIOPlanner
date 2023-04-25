@@ -4,9 +4,9 @@ from src.Models.models import *
 from datetime import datetime
 from sqlalchemy import asc, desc
 
-calendar_monthly_page = Blueprint('Calendar', __name__, template_folder="templates")
+calendar_monthly_page = Blueprint('Calendar', __name__, template_folder="templates") #add routing functionality to assignment page
 
-@calendar_monthly_page.route("/createEvent", methods = ["GET","POST"])
+@calendar_monthly_page.route("/createEvent", methods = ["GET","POST"]) #create event and update the database accordingly
 def createEvent():
     if request.method == "POST":
         title = request.form['eventTitle']
@@ -17,7 +17,6 @@ def createEvent():
         endTime_of_event = request.form['eventEndTime']
         newEvent = Event(title = title, dateTime_of_event = dt, location_of_event = location_of_event, endTime_of_event = endTime_of_event)
         
-
         try:
             db.session.add(newEvent)
             db.session.commit()
@@ -29,8 +28,9 @@ def createEvent():
         Events = Event.query.order_by(Event.dateTime_of_event).all()
         return render_template("Calendar/createEvent.html", Events=Events)
 
-@calendar_monthly_page.route("/editEvent/<int:id>", methods = ["GET","POST"])
+@calendar_monthly_page.route("/editEvent/<int:id>", methods = ["GET","POST"]) 
 def editEvent(id):
+    #edit events that exist in the calendar and update in the calendar; refresh
     task_to_update = Event.query.get_or_404(id)
     if request.method == "POST":
         task_to_update.title = request.form['eventTitle']
@@ -52,6 +52,7 @@ def editEvent(id):
         
 @calendar_monthly_page.route("/deleteEvent/<int:id>", methods = ["POST"])
 def deleteEvent(id):
+    #delete the event from the calendar and refresh accordingly
     task_to_delete = Event.query.get_or_404(id)
     try:
         db.session.delete(task_to_delete)
@@ -62,5 +63,6 @@ def deleteEvent(id):
         
 @calendar_monthly_page.route('/calendar', methods = ["GET"])
 def index():
+    #refresh the webpage with existing events
     Events = Event.query.order_by(asc(Event.dateTime_of_event)).all()
     return render_template("Calendar/CalendarMonthly.html", Events = Events)

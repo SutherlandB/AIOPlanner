@@ -8,6 +8,7 @@
 {% block body %}
 
 <div class = edit_content>
+    <!-- edit the list event using the editListEvent function -->
     <h1 class = "createButtons">Edit the Event</h1>
     <form action = "/editListEvent/{{task_to_update.id}}" method =  "POST">
         {%if task_to_update.content %}

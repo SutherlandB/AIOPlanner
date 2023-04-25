@@ -10,6 +10,7 @@
 <div class = edit_content>
     <h1 class = "createButtons">Edit the Event</h1>
     <form action = "/editEvent/{{task_to_update.id}}" method =  "POST">
+         <!-- UI element to redirect to the edit the event function-->
         {%if task_to_update.title %}
         <label class = "createButtons" for="eventTitle"> Title: </label>
         <input type="text"  name="eventTitle" id = "eventTitle" value = "{{task_to_update.title}}">
@@ -39,6 +40,7 @@
 
     </form>
     <form action = "/deleteEvent/{{task_to_update.id}}" method = "POST">
+        <!-- delete the selected event -->
         <input type = "submit" name = "delete" value = "Delete">
     </form>
 

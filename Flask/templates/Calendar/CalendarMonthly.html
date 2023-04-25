@@ -8,11 +8,13 @@
 {% endblock %}
 
 {% block body %}
+<!-- display the calendar events  -->
 <div class = "content" >
     <title>Calendar</title>
     <div class = "eventOptions">
      <table>
          <tr>
+            <!-- button for create the events that are on the calendar -->
             <a href="/createEvent">
                 <input class = "createEvent" type = "button" name = "createEvent" value = "Create Event">
             </a> 
@@ -21,6 +23,7 @@
     </div>
 </div>
 <div id = "calendar" style="background-color:#ffff">
+    <!-- backend for calendar functionality-->
     <script>
         
         let calendarEL = document.getElementById('calendar')
@@ -48,6 +51,7 @@
             info.el.style.borderColor = 'red';
             
         },
+        //display the events inside the calendar
         events : [
             {% for event in Events %}
             { 

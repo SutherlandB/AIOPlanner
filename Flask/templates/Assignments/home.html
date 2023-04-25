@@ -13,15 +13,18 @@
 
 {% endblock %}
 {% block body %}
+<!--Webpage will display assignments for the user -->
 <div class = "content">
    <body>
       <hr/>
       {%- for message in get_flashed_messages() %}
          {{ message }}
+         <!-- message displayed based on how many availale messages there are -->
       {%- endfor %}
       <h1 style="color:white">Assignments</h1>
       <form method="GET" action="/assignments">
         <label style="color:white" for="completed-filter">Filter by Completed Status:</label>
+        <!-- UI element for filtering completed and non-completed assignments-->
         <select name="completed" id="completed-filter">
             <option value="all" {% if completed == 'all' %}selected{% endif %}>All Assignments</option>
             <option value="not_completed" {% if completed == 'not_completed' %}selected{% endif %}>Not Completed</option>
@@ -38,13 +41,15 @@
                <th scope="col"><b>Actions</b></th>
             </tr>
          </tr>
-
+            <!-- Assignments displayed based on how many availale assignments there are -->
             {% for assignment in AssignmentTracker %}
                <tr scope="row">
+                  <!-- display the member variables for the assignment -->
                   <td>{{ assignment.title }}</td>
                   <td>{{ assignment.course }}</td>
                   <td>{{ assignment.due_date }}</td>
                   <td>
+                     <!-- redirect to the checkbox function if clicked -->
                     <form action = "{{ url_for('assignments.checkbox_assingment', id=assignment.id) }}", method = "POST" >
                         {% if assignment.completed == true%}
                         <input type = "checkbox" name = "Check" onChange="this.form.submit()" checked> 
@@ -54,6 +59,7 @@
                     </form>
                   </td>
                   <td>    
+                     <!--hyperlinks for deleting and updating the assignment-->
                     <a href="{{ url_for('assignments.delete_assignment', id=assignment.id) }}">Delete</a>
                     <br>
                     <a href="{{ url_for('assignments.update_form', id=assignment.id) }}">Update</a>
@@ -63,6 +69,7 @@
             {% endfor %}
       </table>
       {% if update_assignment_id %}
+      <!-- if user is trying to update their information, show the update form-->
       <h2>Update assignment</h2>
       <form method="POST" action="{{ url_for('assignments.update_assignment', id=update_assignment_id) }}">
           <label style="color:white">Title:</label>
@@ -73,16 +80,14 @@
       </form>
     {% else %}
     <h2>Add a new assignment</h2>
+    <!-- user sees the new assignment page for new tasks-->
     <form method="post" action="/add_item">
         <label style="color:white" for = "title">Title</label><br>
         <input type = "text" name = "title" placeholder = "title" /><br>
-
         <label style="color:white" for = "course">Course</label><br>
         <input type = "text" name = "course" placeholder = "course" /><br>
-
         <label style="color:white" for = "due_date">Due Date</label><br>
         <input type="date" name = "due_date" placeholder = "due date"><br>
-
         <input type = "submit" value = "Submit" />
     </form>
     {% endif %}

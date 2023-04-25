@@ -1,3 +1,4 @@
+/* used for every body fade effect*/
 body {
     animation: fadeInAnimation ease 1.3s;
     animation-iteration-count: 1;
@@ -12,7 +13,8 @@ body {
         opacity: 1;
      }
 }
- 
+
+/* create event aesthetic for buttons*/
 .createEvent{
     position: fixed;
     bottom: -4px;
@@ -28,6 +30,7 @@ body {
 .tabs__label{
     color:#fff;
 }
+/*calendar aesthetic for the dashboard page */
 .containerCali{
     width: max-content;
     height: max-content;
@@ -40,6 +43,7 @@ body {
     
     height: 100%;
 }
+/*show the calendar aesthetic for the calendar page*/
 .calendar{
     height: 610px;
     width: max-content;
@@ -245,6 +249,7 @@ body {
   .date-formate.showtime {
     animation: showtime 1s forwards;
   }
+  /*show the calendar animation */
   @keyframes to-top {
     0% {
       transform: translateY(0);
@@ -301,6 +306,7 @@ body {
       margin: 5px 0px;
     }
   }
+  /*buttons for the add task on the dashboard*/
   .button1{
     padding: 5px 25px;
     background-color: #050801;
@@ -342,7 +348,7 @@ body {
     color: white; 
     text-decoration: none; 
 } 
-
+/*landing page aesthetics*/
 .landing{
     display: flex;
     height:100vh;

@@ -1,10 +1,10 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-db = SQLAlchemy()
+db = SQLAlchemy() #global database that each function can use
 
 
-class Todo(db.Model):
+class Todo(db.Model): #class for Todo tasks
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.String(200), nullable = False)
     completed = db.Column(db.Integer, default = 0)
@@ -14,7 +14,7 @@ class Todo(db.Model):
     def __repr__(self):
         return '<Task %r>' % self.id
     
-class Event(db.Model):
+class Event(db.Model): #class for events
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(200), nullable = False)
     completed = db.Column(db.Integer, default = 0)
@@ -25,7 +25,7 @@ class Event(db.Model):
     def __repr__(self):
         return '<Event %r>' % self.id
 
-class AssignmentTracker(db.Model):
+class AssignmentTracker(db.Model): #class for AssignmentTracker
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     course = db.Column(db.Text)
@@ -35,7 +35,7 @@ class AssignmentTracker(db.Model):
     def __repr__(self):
         return '<Assignment %r>' % self.id
 
-class List(db.Model):
+class List(db.Model): #class for List 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable = False)
     date_created = db.Column(db.DateTime, default = datetime.utcnow)

@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+<!-- display the dashboard elements-->
 <div class="page-content">
     <h1 style = "color: white; font-family: sans-serif;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspDashboard</h1>
     <div class = "containerCali" id = "child">
@@ -21,6 +22,7 @@
                     </span>
             </div>
             <div class = "calendar-body">
+                <!-- calendar element to see current date and time -->
                 <div class = "calendar-week-days">
                     <div>Sun</div>
                     <div>Mon</div>
@@ -50,10 +52,10 @@
     <div class = "eventsAndTasks" id = "child">
         <div class = "upcomingEvents" id = "childElement">
             <h1 style = "color:white; font-size: 20px;">Upcoming Events</h1>
+            <!-- show all upcoming events in window -->
             {% if Events%}
             <table class = "custom-table">
                 <thead>
-                    
                     <tr scope = "row" >
                         <th scope = "col">Event</th>
                         <th scope = "col">Date</th>
@@ -77,6 +79,7 @@
         <div class = "to-do_tile" id = "childElement">
                 <h1 class = "To-do_title" style="color:white; font-size: 20px;">To-Do List</h1>
                 {% if tasks%}
+                <!-- todo item widget for users to see -->
                 <table class="custom-table">
                     <thead>
                         

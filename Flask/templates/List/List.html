@@ -4,16 +4,15 @@
 <title>List</title>
 {% endblock %}
 
-  
-
-
 {% block body %}
 <div class="tabs">
+  <!-- show all the lists in a row as radio buttons for user to see -->
   {% for list in Lists%}
       <input type="radio" class="tabs__radio" name="tabs-example" id="{{ list.id }}" >
       <label for="{{ list.id }}" class="tabs__label">{{ list.title }}</label>
       
       <div class="tabs__content">
+        <!-- tabs content that shows user the information within each list tab-->
         <table class="custom-table">
           <tr scope="row">
               
@@ -28,12 +27,14 @@
             <td>{{ task.content }}</td>
             <td>{{ task.date_created.date() }}</td>
             <td>    
+                <!-- delete and update the task through the user element -->
                 <a href="/delete_task/{{task.id}}">Delete</a>
                 <br>
                 <a href="/editListEvent/{{task.id}}">Update</a>
             </td>
             <td>
-                <form action = "/checkboxList/{{task.id}}", method = "POST" >
+                <form action = "/checkboxList/{{task.id}}", method = "POST">
+                    <!-- checkbox element for user to click -->
                     {% if task.completed == true%}
                     <tab></tab>
                     <input type = "checkbox" name = "Check" class = "Check" onChange="this.form.submit()" checked> 
@@ -50,9 +51,11 @@
         
         </table>
         <form action = "/createNewTask/{{list.id}}", method = "POST">
+           <!-- create a new task that redirects the user-->
           <input type = "text" name = "textBox" placeholder = "New task...">
           <input type = "submit" name = "createTask" value = "Create a task">
         </form>
+        <!-- delete list from the radio buttons and redirect the user with deleteList function-->
         <a href="/deleteList/{{list.id}}" style = "color: red;">Delete {{list.title}}</a>
       </div>
       
@@ -64,6 +67,7 @@
 <table>
   <tr>
      <a href="/createList">
+       <!-- create a new List that redirects the user-->
          <input class = "createEvent" type = "button" name = "createList" value = "Create List">
      </a> 
      
