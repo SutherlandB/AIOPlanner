@@ -20,3 +20,5 @@ If windows: .\env\Scripts\activate is VSC terminal
 Go to Python website: https://www.python.org
 Download Python [photo]
 Check your version to see if it is installed properly --> python3 --version
+
+If you are having issues, reach out to me: suthbrown@gmail.com
