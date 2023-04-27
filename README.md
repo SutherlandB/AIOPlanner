@@ -7,7 +7,7 @@ Download and sign into Github Desktop (easiest to use) - https://desktop.github.
 
 ## Steps to install:
 
-1. Pull the repository into a local folder using the Clone Repository option ![photo1](githubTutorial/cloneRepoOption.png) ![photo4](githubTutorial/localPath.png)
+1. Pull the repository: https://github.com/SutherlandB/AIOPlanner into a local folder using the Clone Repository option ![photo1](githubTutorial/cloneRepoOption.png) ![photo4](githubTutorial/localPath.png)
 2. Open a terminal and change your working directory to the git repository folder ![photo2](githubTutorial/workingDirectory.png)
 3. Check the branch you are in... if it says main, use this command --> "git checkout development" if you are in git bash or switch the branch to development if you are using a Git GUI ![photo3](githubTutorial/changeBranch.png)
 4. In a terminal, make sure your working directory is the AIOPlanner repository under the development branch(previous step). Type this command: source env/Scripts/activate
